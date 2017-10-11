@@ -1,0 +1,56 @@
+<div id="listProducts">
+    <div *ngIf="temp" class="message">
+        <span class="alert alert-warning">Режим редактирования. Необходимо нажать на свойство товара для его изменения!</span>
+    </div>
+    <div *ngFor="let product of products" class="product">
+        <ng-template [ngTemplateOutlet]="loadTemplate(product)"
+                     [ngOutletContext]="{ $implicit: product}">
+        </ng-template>
+    </div>
+</div>
+
+<ng-template #readOnlyTemplate let-product>
+    <div class="image">
+        <img src="{{product.image}}" />
+    </div>
+    <div class="about">
+        <span class="nameProduct" data-id="product._id" routerLinkActive="active"><a [routerLink]="[product.articul]">{{product.name}}</a></span>
+        <div>
+            <ul>
+                <li *ngIf="product.material != ''">Материал: {{product.material}}</li>
+                <li *ngIf="product.colors != ''">Доступные цвета: {{product.colors}}</li>
+                <li *ngIf="product.w_h != ''">Размер (ширина/высота): {{product.w_h}}</li>
+                <li>Описание: {{product.about}}</li>
+                <li>Цена: {{product.cost}}</li>
+                <li *ngIf="product.status != ''">Статус: {{product.status}}</li>
+                <li *ngIf="product.salesText != ''">Скидка: {{product.salesText}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="edit" *ngIf="admin">
+        <input type="button" value="Изменить" class="btn btn-default" (click)="editProduct(product)" />
+    </div>
+</ng-template>
+
+<ng-template #editTemplate>
+    <div class="image">
+        <img src="{{editedProduct.image}}" />
+    </div>
+    <div class="about">
+        <span class="nameProduct" data-id="editedProduct._id" routerLinkActive="active"><a [routerLink]="[editedProduct.articul]">{{editedProduct.name}}</a></span>
+        <div>
+            <ul>
+                <li>Материал: <br/><input type="text" class="form-control input-md" [(ngModel)]="editedProduct.material" placeholder="Введите материал" /></li>
+                <li>Доступные цвета: <br/><input type="text" class="form-control input-md" [(ngModel)]="editedProduct.colors" placeholder="Введите цвета" /></li>
+                <li>Размер (ширина/высота): <br/><input type="text" class="form-control input-md" [(ngModel)]="editedProduct.w_h" placeholder="Введите размеры (ширина/высота)" /></li>
+                <li>Описание: <br/><input type="text" class="form-control input-md" [(ngModel)]="editedProduct.about" placeholder="Введите описание" /></li>
+                <li>Цена: <br/><input type="number" min="0" class="form-control input-md" [(ngModel)]="editedProduct.cost" placeholder="Введите цену" /></li>
+                <li>Статус товара: <br/><input type="text" class="form-control input-md" [(ngModel)]="editedProduct.status" placeholder="Введите статус товара" /></li>
+                <li>Скидка: <br/><input type="text" class="form-control input-md" [(ngModel)]="editedProduct.salesText" placeholder="Введите текст скидки" /></li>
+            </ul>
+        </div>
+    </div>
+    <div class="edit" *ngIf="admin">
+        <input type="button" value="Сохранить" (click)="saveProduct()" class="btn btn-default btn-md" />
+    </div>
+</ng-template>

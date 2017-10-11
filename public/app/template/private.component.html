@@ -1,0 +1,88 @@
+<div id="private">
+    <div id="privateData">
+        <ng-template [ngTemplateOutlet]="loadTemplate()"
+                     [ngOutletContext]="{ $implicit: user}">
+        </ng-template>
+    </div>
+
+    <ng-template #readOnlyTemplate let-user>
+        <ul>
+            <li><strong>Логин:</strong> {{user?.login}}</li>
+            <li><strong>Имя:</strong> {{user?.client.name}}</li>
+            <li><strong>Фамилия:</strong> {{user?.client.surname}}</li>
+            <li><strong>Отчество:</strong> {{user?.client.lastname}}</li>
+            <li><strong>Электронная почта:</strong> {{user?.client.mail}}</li>
+            <li><strong>Телефон:</strong> {{user?.client.phone}}</li>
+            <li><button class="btn btn-default btn-md" (click)="edit()">Изменить</button></li>
+        </ul>
+    </ng-template>
+
+    <ng-template #editTemplate let-user>
+        <form class="form-group" [formGroup]="myForm">
+            <ul>
+                <li>
+                    <strong>Логин: </strong>{{user.login}}<br/>
+                </li>
+                <li>
+                    <strong>Имя:</strong><br/>
+                    <input type="text" class="form-control input-md" name="name" formControlName="name"
+                           placeholder="Введите имя"/>
+                </li>
+                <li>
+                    <strong>Фамилия:</strong><br/>
+                    <input type="text" class="form-control input-md" name="surname" formControlName="surname"
+                           placeholder="Введите фамилию"/>
+                </li>
+                <li>
+                    <strong>Отчество:</strong><br/>
+                    <input type="text" class="form-control input-md" name="lastname" formControlName="lastname"
+                           placeholder="Введите отчество"/>
+                </li>
+                <li>
+                    <strong>Электронная почта:</strong><br/>
+                    <input type="text" class="form-control input-md" name="mail" formControlName="mail"
+                           placeholder="Введите почту"/>
+                </li>
+                <li>
+                    <strong>Телефон:</strong><br/>
+                    <input type="text" class="form-control input-md" name="phone" formControlName="phone"
+                           placeholder="Введите телефон" [textMask]="{mask: mask, guide: true}"/>
+                </li>
+                <li><button class="btn btn-default btn-md" [disabled]="myForm.invalid" (click)="saveData()">Сохранить изменения</button></li>
+            </ul>
+        </form>
+    </ng-template>
+
+    <div id="bucket">
+        Корзина товаров<br/>
+        <table class="table" *ngIf="!nullOrder; else unset">
+            <thead>
+            <tr>
+                <td>Артикул товара</td>
+                <td>Количество</td>
+                <td>Сумма заказа</td>
+                <td>Доставка</td>
+                <td>Дата доставки</td>
+                <td>Статус заказа</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of orders; let i = index">
+                <td>{{item?.articul}}</td>
+                <td>{{item?.number}}</td>
+                <td>{{item?.summ}}</td>
+                <td>{{item?.delivery ? 'Да' : 'Нет'}}</td>
+                <td>{{item?.delivery ? item?.date : '—'}}</td>
+                <td>{{item?.status}}</td>
+                <td>
+                    <button class='btn btn-default btn-md' (click)='confirmOrder(item?._id, i)'>Подтвердить заказ</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ng-template #unset>
+            <p>В вашей корзине пока еще нет товаров!</p>
+        </ng-template>
+    </div>
+</div>

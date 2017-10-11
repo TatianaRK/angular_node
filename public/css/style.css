@@ -1,0 +1,41 @@
+@font-face {
+  font-family: SFUIDisplay-Light;
+  src: url('../fonts/SFUIDisplay/SFUIDisplay-Light.otf');
+}
+
+@font-face {
+  font-family: SFUIDisplay-Semibold;
+  src: url('../fonts/SFUIDisplay/SFUIDisplay-Semibold.otf');
+}
+
+#app {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#mainMenu {
+  min-height: 60px;
+  font-size: 18px;
+}
+
+#mainMenu a {
+  padding: 20px 5px 20px 5px;
+}
+
+#mainMenu > div {
+  width: 100% !important;
+  text-align: center;
+}
+ul li a:active, ul li a:focus {
+  color: #ff0000 !important;
+}
+
+.red-star {
+  color: #ff0000;
+}
+
+.map-container-inner
+{
+  width: 800px;
+  height: 500px;
+}

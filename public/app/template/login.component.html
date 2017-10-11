@@ -1,0 +1,16 @@
+<div id="login">
+    <form class="form-group" [formGroup]="loginForm">
+        <label>Логин:</label><br/>
+        <input type="text" class="form-control input-md" name="loginuser" formControlName="loginuser"
+               placeholder="Введите логин"/><br/>
+        <span [ngClass]="{display: visible}" class="help-block">
+        <strong>{{message}}</strong>
+    </span>
+        <label>Пароль:</label><br/>
+        <input type="password" class="form-control input-md" name="pass" formControlName="pass"
+               placeholder="Введите пароль"/><br/>
+        <button class="btn btn-default btn-md" (click)="auth()">Войти</button>&nbsp;<button
+            class="btn btn-default btn-md" (click)="reg()">Регистрация
+    </button>
+    </form>
+</div>

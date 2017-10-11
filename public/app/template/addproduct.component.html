@@ -1,0 +1,42 @@
+<div id="addProduct">
+    <div class="form-group">
+        <label>Артикул <span class="red-star">*</span>:</label>
+        <input type="number" class="form-control input-md" [(ngModel)]="articul" min="0" placeholder="Введите артикул" required />
+        <div *ngIf="errArticul" class="alert alert-danger">
+            {{messageArticul}}
+        </div>
+        <label>Название товара <span class="red-star">*</span>:</label>
+        <input type="text" class="form-control input-md" [(ngModel)]="nameProduct" placeholder="Введите название товара" required />
+        <label>Категория товара <span class="red-star">*</span>:</label>
+        <select class="form-control" [(ngModel)]="category">
+            <option [ngValue]="temp" selected disabled>Выберете категорию</option>
+            <option value="office">Офисная мебель</option>
+            <option value="room">Мебель для спальни</option>
+            <option value="kitchen">Мебель для кухни</option>
+            <option value="soft">Мягкая мебель</option>
+            <option value="child">Детская мебель</option>
+            <option value="other">Прочая мебель</option>
+        </select>
+        <label>Описание товара <span class="red-star">*</span>:</label>
+        <textarea class="form-control" placeholder="Опишите товар" [(ngModel)]="about"></textarea>
+        <label>Материал товара:</label>
+        <input type="text" class="form-control input-mg" [(ngModel)]="material" placeholder="Введите материал товара" />
+        <label>Цвета товара</label>
+        <input type="text" class="form-control input-md" [(ngModel)]="colors" placeholder="Введите доступные цвета для товара" />
+        <label>Габариты (ширинаХвысота):</label>
+        <input type="text" class="form-control input-mg" [(ngModel)]="w_h" placeholder="Введите размеры товара" />
+        <label>Количество товара <span class="red-star">*</span>:</label>
+        <input type="number" class="form-control input-md" [(ngModel)]="quantity" min="0" placeholder="Введите количество товара на складе" required />
+        <label>Цена за единицу товара <span class="red-star">*</span>:</label>
+        <input type="number" class="form-control input-md" [(ngModel)]="cost" min="0" placeholder="Введите цену" required />
+        <label>Введите статус товара: </label>
+        <input type="text" class="form-control input-md" [(ngModel)]="status" placeholder="Введите статус товара" />
+        <label>Фотография товара: </label>
+        <!--<input type="text" class="form-control input-md" placeholder="Введите адрес фото или выберете с компьютера" /><br/>-->
+        <input type="file" class="btn-md btn btn-default" [(ngModel)]="image" /><br/>
+        <button class="btn btn-default btn-md" (click)="addProduct()">Добавить</button>
+        <div [hidden]="success" class="alert alert-success">
+            Товар успешно добавлен!
+        </div>
+    </div>
+</div>

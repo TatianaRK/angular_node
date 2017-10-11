@@ -1,0 +1,15 @@
+<div id="contacts">
+    <div id="phones">
+        <h3>Наши телефоны: </h3><br/>
+        <img src="../../images/velcom.png" /> <span class="contactPhone">123-34-45</span><br/>
+        <img src="../../images/mts.png" /> <span class="contactPhone">567-78-89</span><br/>
+        <img src="../../images/life.png" /> <span class="contactPhone">901-12-23</span><br/>
+    </div>
+    <div id="map">
+        <h3>Наш адрес: такая-то улица, дом такой-то</h3><br/>
+        <ya-map [latitude]="lat" [longitude]="lng" [zoom]="12">
+            <ya-marker [latitude]="lat" [longitude]="lng">
+            </ya-marker>
+        </ya-map>
+    </div>
+</div>

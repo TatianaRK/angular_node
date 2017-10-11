@@ -1,0 +1,26 @@
+<div id="goods">
+    <div *ngFor="let item of goods" class="goods">
+        <div class="image">
+            <img src="{{item.image}}" />
+        </div>
+        <div class="about">
+            <span class="nameProduct">{{item.name}}</span>
+            <div id="order">
+                Количество: <br/>
+                <input type="number" [(ngModel)]="numb"/><br/>
+                Цена: <br/>
+                <span>{{numb * item.cost}}</span><br/>
+                <div id="dateOrder">
+                    <input type="checkbox" (click)="change()" /> Доставка
+                    <div *ngIf="check">
+                        <input type="date" name="date" class="form-control input-lg" [(ngModel)]="date" placeholder="Выберете дату" />
+                    </div>
+                </div>
+                <button class="btn btn-default" (click)="addOrder(item.articul)" *ngIf="authenticate; else unset">Добавить в корзину</button>
+                <ng-template #unset>
+                    <div class="warnMessage">Чтобы сделать заказ, необходимо зарегистрироваться!</div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

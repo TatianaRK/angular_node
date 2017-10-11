@@ -1,0 +1,12 @@
+<div id="repliesList">
+    <div id="addReply">
+        <textarea class="form-control" [(ngModel)]="reply" placeholder="Введите текст отзыва">
+        </textarea><br/>
+        <button *ngIf="authenticate" class="btn btn-default btn-md" (click)="addReply(reply)">Оставить отзыв</button>
+    </div>
+    <div class="replies" *ngFor="let message of replies; let i = index">
+        <p class="name">{{message.loginUser}}: <span class="date">{{message.update_at | date:"dd.MM.yyyy HH:mm"}}</span></p>
+        <p class="text">{{message.message}}</p>
+        <button *ngIf="admin" class="btn btn-default btn-md" (click)="removeReply(message._id, i)">Удалить</button>
+    </div>
+</div>

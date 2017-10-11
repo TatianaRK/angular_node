@@ -1,0 +1,44 @@
+<div id="register">
+    <div class="form-group">
+        <label>Логин:</label>
+        <input type="text" [ngClass]="{errorField:errLogin}" class="form-control input-md" name="loginuser" [(ngModel)]="user.loginuser"
+               #loginuser="ngModel" (ngModelChange)="checkUniq(user.loginuser)" placeholder="Введите логин" required><br/>
+        <div *ngIf="errLogin" class="alert alert-danger">Такой логин уже существует! <img src="../../images/err.png" /></div>
+        <label>Пароль:</label>
+        <input type="password" class="form-control input-md" name="password" [(ngModel)]="user.password"
+               #password="ngModel" minlength="6" placeholder="Введите пароль" required><br/>
+        <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
+            Пароль должен иметь не менее 6 символов!
+        </div>
+        <label>Повторите пароль:</label>
+        <input type="password" class="form-control input-md" name="passwordConf" [(ngModel)]="passwordConf"
+               #passwordConfirm="ngModel" placeholder="Введите пароль" required><br/>
+        <div [hidden]="passwordConfirm.valid || passwordConfirm.untouched" class="alert alert-danger">
+            Пароль не совпадает!
+        </div>
+        <label>Имя:</label>
+        <input type="text" class="form-control input-md" name="nameuser" [(ngModel)]="client.nameuser"
+               #nameuser="ngModel" placeholder="Введите имя" required/><br/>
+        <label>Фамилия:</label>
+        <input type="text" class="form-control input-md" name="surname" [(ngModel)]="client.surname" #surname="ngModel"
+               placeholder="Введите фамилию" required/><br/>
+        <label>Отчество:</label>
+        <input type="text" class="form-control input-md" name="lastname" [(ngModel)]="client.lastname"
+               #lastname="ngModel" placeholder="Введите отчество" required/><br/>
+        <label>Почта:</label>
+        <input type="email" class="form-control input-md" name="mail" [(ngModel)]="client.mail" #mail="ngModel"
+               placeholder="Введите почту" required email/><br/>
+        <div [hidden]="mail.valid || mail.untouched" class="alert alert-danger">
+            Введите корректный адрес почты!
+        </div>
+        <label>Телефон:</label>
+        <input type="text" class="form-control input-md" name="phone" [(ngModel)]="client.phone" #phone="ngModel"
+               [textMask]="{mask: mask, guide: true}" placeholder="Введите телефон +375 (xx) xxx-xx-xx"
+               required/><br/>
+        <div [hidden]="phone.valid || phone.untouched" class="alert alert-danger">
+            Введите телефон согласно маске!
+        </div>
+    </div>
+    <button class="btn btn-default btn-md" (click)="regist()">Зарегистрироваться</button>&emsp;&emsp;
+    <button class="btn btn-default btn-md" (click)="loginUser()">Войти</button>
+</div>
